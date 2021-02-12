@@ -1,9 +1,13 @@
 package AddressBook.lab;
 
+import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,28 +27,40 @@ public class LabApplicationTest {
     private ObjectMapper mapper;
     private BuddyInfo buddy  = new BuddyInfo("Pizza Pizza", "613-737-1111", "2301 Navaho Dr");
 
-    @Test
+
+    @BeforeAll
     public void testAddBuddyInfo() throws Exception {
+        //Test Create AddressBook
         mockMvc.perform( MockMvcRequestBuilders
-                .post("/addressbook/0")
-                .content(mapper.writeValueAsString(buddy))
+                .post("/addressbook/")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
+
+        //Test Adding BuddyInfo
+        mockMvc.perform( MockMvcRequestBuilders
+                .post("/addressbook/1")
+                .content(mapper.writeValueAsString(buddy))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("Pizza Pizza")));
     }
 
     @Test
     public void testAddressBookForm() throws Exception {
-        this.mockMvc.perform(get("/addressbook/0")).andExpect(status().isOk());
+        this.mockMvc.perform(get("/addressbook/1")).andExpect(status().isOk())
+                .andExpect(content().string(containsString("Pizza Pizza")));
     }
 
-    @Test
+    @AfterAll
     public void testRemoveBuddyInfo() throws Exception {
         mockMvc.perform( MockMvcRequestBuilders
-                .post("/addressbook/0")
+                .post("/addressbook/1")
                 .content(mapper.writeValueAsString(buddy))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(content().string(not(containsString("Pizza Pizza"))));
     }
 }
