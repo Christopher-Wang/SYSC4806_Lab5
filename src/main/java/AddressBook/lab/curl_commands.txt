@@ -6,3 +6,5 @@ curl -i -X POST -d '{"name":"Pizza Pizza", "number":"6137371111", "address":"230
 
 Below is the curl command for delete the Pizza Pizza buddyinfo
 curl -i -X DELETE -d '{"name":"Pizza Pizza", "number":"6137371111", "address":"2301 Navaho Dr"}' -H "Content-Type:application/json" http://localhost:8080/addressbook/1
+
+Git OAuth token: 38beab1b228e156e851fa0a9fa228f5363a3951a
