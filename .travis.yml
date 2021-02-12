@@ -1,5 +1,5 @@
 language: java
 deploy:
   provider: heroku
-  api-key: HEROKU_API_KEY
+  api-key: $HEROKU_API_KEY
   app: evening-dawn-45627
