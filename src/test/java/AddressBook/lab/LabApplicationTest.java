@@ -10,6 +10,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,6 +20,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class LabApplicationTest {
 
     @Autowired
@@ -33,9 +35,10 @@ public class LabApplicationTest {
         //Test Create AddressBook
         mockMvc.perform( MockMvcRequestBuilders
                 .post("/addressbook/")
+                .content("{}")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
+                .andExpect(status().is2xxSuccessful());
 
         //Test Adding BuddyInfo
         mockMvc.perform( MockMvcRequestBuilders
@@ -56,7 +59,7 @@ public class LabApplicationTest {
     @AfterAll
     public void testRemoveBuddyInfo() throws Exception {
         mockMvc.perform( MockMvcRequestBuilders
-                .post("/addressbook/1")
+                .delete("/addressbook/1")
                 .content(mapper.writeValueAsString(buddy))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
