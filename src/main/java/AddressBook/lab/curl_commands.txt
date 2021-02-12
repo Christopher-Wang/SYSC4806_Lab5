@@ -1,0 +1,8 @@
+Below is the curl command for creating an addressbook
+curl -i -X POST -d "{}" -H "Content-Type:application/json" http://localhost:8080/addressbook
+
+Below is the curl command for creating a buddyinfo named Pizza Pizza
+curl -i -X POST -d '{"name":"Pizza Pizza", "number":"6137371111", "address":"2301 Navaho Dr"}' -H "Content-Type:application/json" http://localhost:8080/addressbook/1
+
+Below is the curl command for delete the Pizza Pizza buddyinfo
+curl -i -X DELETE -d '{"name":"Pizza Pizza", "number":"6137371111", "address":"2301 Navaho Dr"}' -H "Content-Type:application/json" http://localhost:8080/addressbook/1
