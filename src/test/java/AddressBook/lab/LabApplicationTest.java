@@ -51,7 +51,7 @@ public class LabApplicationTest {
     }
 
     @Test
-    public void testAddressBookForm() throws Exception {
+    public void testGetBuddyInfo() throws Exception {
         this.mockMvc.perform(get("/addressbook/1")).andExpect(status().isOk())
                 .andExpect(content().string(containsString("Pizza Pizza")));
     }

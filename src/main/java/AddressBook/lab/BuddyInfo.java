@@ -14,6 +14,7 @@ public class BuddyInfo  {
     private Long Id;
     private String name, number, address;
 
+
     /**
      * Constructor for Buddy info
      * @param name name of the BuddyInfo
@@ -78,4 +79,5 @@ public class BuddyInfo  {
     public void setAddress(String address) {
         this.address = address;
     }
+
 }

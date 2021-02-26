@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>AddressBook Success</title>
+</head>
+<body>
+<h1>AddressBook Submit Success</h1>
+<p th:text="'Created Address Book with id:' + ${addressbook.id}"/>
+<form action="#" th:action="@{/}" method="get" class="returnhome">
+    <p><input type="submit" value="Back to Home"/></p>
+</form>
+</body>
+</html>

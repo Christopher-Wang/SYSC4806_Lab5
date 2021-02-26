@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>BuddyInfo Failure</title>
+</head>
+<body>
+<h1>BuddyInfo Submit Failure</h1>
+<p th:text="'Failed to create BuddyInfo in AddressBook: ' + ${id} "/>
+<form action="#" th:action="@{/}" method="get" class="returnhome">
+    <p><input type="submit" value="Back to Home"/></p>
+</form>
+</body>
+</html>
